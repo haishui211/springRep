@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.navy.mapper.sys.SysResourceMapper">
+
+	<select id="findRolesByResUrl" parameterType="java.lang.Long" resultType="java.lang.String">
+		SELECT t2.code FROM T_SYS_RES_ROLE t1, T_SYS_ROLE t2
+		where 
+		t1.res_url=#{value} and
+		t1.role_id = t2.id
+	</select>
+</mapper>

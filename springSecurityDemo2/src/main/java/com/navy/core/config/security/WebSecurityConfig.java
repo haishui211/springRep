@@ -34,9 +34,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	@Autowired
 	private CustomerDetailsService customerDetailsService;
 	
-//	@Autowired
-//	private CustomPostProcessor customPostProcessor;
-	
 	@Autowired
 	private CustomAccessDecisionManager customAccessDecisionManager;
 	

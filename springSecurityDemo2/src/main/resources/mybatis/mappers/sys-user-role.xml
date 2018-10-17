@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.navy.mapper.sys.SysUserRoleMapper">
+
+	<select id="findRolesByUserId" parameterType="java.lang.Long" resultType="java.lang.String">
+		SELECT t2.code FROM T_SYS_USER_ROLE t1, T_SYS_ROLE t2
+		where 
+		t1.user_id=#{value} and
+		t1.role_id = t2.id
+	</select>
+	
+	<insert id="insert" parameterType="sysUserRole">
+	insert into T_SYS_USER_ROLE (
+		user_id, 
+		role_id)
+	values (
+		#{userId,jdbcType=BIGINT},
+		#{roleId,jdbcType=BIGINT}
+  </insert>
+	
+</mapper>

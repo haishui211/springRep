@@ -28,7 +28,7 @@ public class CustomAccessDecisionManager implements AccessDecisionManager{
 		if(authentication == null){
             throw new AccessDeniedException("permission denied");
         }
-
+		
         //当前用户拥有的角色集合
         List<String> roleCodes = authentication.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList());
 
