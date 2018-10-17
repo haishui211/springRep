@@ -13,7 +13,6 @@ import com.navy.mapper.sys.SysUserRoleMapper;
 /**
  * 全局组件
  * @author lnavy
- *
  */
 @Component("appGlobalComponent")
 public class AppGlobalComponent implements InitializingBean{
