@@ -1,0 +1,71 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>NettySocket客户端</title>
+<script
+  src="http://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+    <style>
+        body { 
+            padding:20px;
+        }
+        #console { 
+            height: 300px; 
+            overflow: auto; 
+        }
+        .username-msg {color:orange;}
+        .connect-msg {color:green;}
+        .disconnect-msg {color:red;}
+        .send-msg {color:#888}
+    </style>
+</head>
+<body>
+    <h1>Netty-socketio示例</h1>
+    <br/>
+    <div id="console" class="well">
+    </div>
+</body>
+<script type="text/javascript">
+        var socket =  io.connect('http://localhost:9999?userId=12311&pageSign=firstPage&token=1234');
+ 
+        socket.on('connect', function() {
+            output('<span class="connect-msg">成功连接到服务端!</span>');
+        });
+         
+        socket.on('testEvent', function(data) {
+            output(JSON.stringify(data));
+        });
+         
+        socket.on('disconnect', function() {
+            output('<span class="disconnect-msg">The client has disconnected!</span>');
+        });
+        function sendDisconnect() {
+            socket.disconnect();
+        }
+         
+        function sendMessage() {
+            var userName = $("#name").val()
+            var message = $('#msg').val();
+            $('#msg').val('');
+            socket.emit('testEvent', {userName: userName, message: message});
+        }
+         
+        function output(message) {
+            var time = '';
+            var oDate = new Date(); //实例一个时间对象；
+            time += oDate.getFullYear() + '-';   //获取系统的年；
+            time += (oDate.getMonth()+1) + '-';   //获取系统月份，由于月份是从0开始计算，所以要加1
+            time += oDate.getDate() + ' '; // 获取系统日，
+            time += oDate.getHours() + ':'; //获取系统时，
+            time += oDate.getMinutes() + ':'; //分
+            time += oDate.getSeconds(); //秒
+             
+             
+            var currentTime = "<span class='time'>" +  time + "</span>";
+            var element = $("<div>" + currentTime + " " + message + "</div>");
+            $('#console').prepend(element);
+        }
+    </script>
+</html>
