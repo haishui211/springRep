@@ -31,6 +31,9 @@ public class SecurityUser implements UserDetails{
 	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
+		if(roles == null) {
+			return null;
+		}
 		return roles.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList());
 	}
 	
