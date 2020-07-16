@@ -20,7 +20,7 @@ public class MybatisConfig {
 	@Autowired
 	private DataSource dataSource;
 	
-	@Bean
+//	@Bean
 	public SqlSessionFactory sqlSessionFactory() throws Exception{
 		SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
 		sqlSessionFactoryBean.setDataSource(dataSource);
